@@ -1,5 +1,5 @@
-function createStore(reducer) {
-  let state = 0;
+function createStore(reducer, initialState) {
+  let state = initialState;
 
   const getState = () => (state);
 
