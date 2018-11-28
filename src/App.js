@@ -52,3 +52,14 @@ console.log('State v1:');
 console.log(stateV1);
 console.log('state v2');
 console.log(stateV2);
+
+const deleteMessageAction = {
+  type: 'DELETE_MESSAGE',
+  index: 0,
+};
+
+store.dispatch(deleteMessageAction);
+const stateV3 = store.getState();
+
+console.log('State v3:');
+console.log(stateV3);
