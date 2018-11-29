@@ -1,4 +1,4 @@
-
+import React, { Component } from 'react';
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -59,6 +59,34 @@ class MessageInput extends React.Component {
   }
 }
 
+class MessageView extends React.Component {
+  handleClick = (index) => {
+    store.dispatch({
+      type: 'DELETE_MESSAGE',
+      index: index,
+    })
+  }
+
+  render() {
+    const messages = this.props.messages.map((message, index) => (
+      <div
+        className='comment'
+        key={index}
+        onClick={() => this.handleClick(index)}
+      >
+        {message}
+      </div>
+    ));
+
+    return (
+      <div className='ui comments'>
+        {messages}
+      </div>
+    )
+  }
+}
+
+
 function createStore(reducer, initialState) {
   let state = initialState;
   const listeners = [];
@@ -100,3 +128,5 @@ const reducer = (state, action) => {
 
 const initialState = { messages: [] };
 const store = createStore(reducer, initialState);
+
+export default App;
