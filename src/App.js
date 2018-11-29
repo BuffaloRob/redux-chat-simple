@@ -1,13 +1,20 @@
 function createStore(reducer, initialState) {
   let state = initialState;
+  const listeners = [];
+
+  const subscribe = (listeners) => (
+    listeners.push(listener)
+  );
 
   const getState = () => (state);
 
   const dispatch = (action) => {
     state = reducer(state, action);
+    listeners.forEach(l => l());
   };
 
   return {
+    subscribe,
     getState,
     dispatch,
   };
