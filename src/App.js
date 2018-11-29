@@ -1,3 +1,23 @@
+
+
+class App extends React.Component {
+  componentDidMount = () => {
+    store.subscribe(() => this.forceUpdate());
+  }
+
+  render() {
+    const messages = store.getState().messages;
+
+    return (
+      <div className='ui segment'>
+        <MessageView messages={messages} />
+        <MessageInput />
+      </div>
+    )
+  }
+  
+}
+
 function createStore(reducer, initialState) {
   let state = initialState;
   const listeners = [];
